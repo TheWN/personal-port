@@ -3,15 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Resume</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+  
+    <title>Narges Naghavi</title>
   </head>
   <body>
-    <header>
-      <h1>Hello, I'm Narges</h1>
-      <p>Backend Developer | AI Enthusiast</p>
-    </header>
+    <nav>
+      <div class="nav-container">
+      <div class="logo">
+          Narges<span>Naghavi</span>
+       </div>
+      <div class="links">
+        <div class="link"><a href="#home">Home</a></div>
+        <div class="link"><a href="#experience">experience</a></div>
+        <div class="link"><a href="#education">education</a></div>
+        <div class="link"><a href="#skills">Skills</a></div>
+        <div class="link"><a href="#contact">Contact</a></div>
+      </div>
+      <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+  </div>
+      <div class="dropdown">
+        <div class="links">
+        <a href="#home">Home</a>
+        <a href="#experience">experience</a>
+        <a href="#education">education</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+        </div>
+      </div>
+  </nav>
 
-    <script src="script.js"></script>
+    <section>
+      <div class="main-container">
+        <div class="image">
+          <img src="portme1.png" alt=""   >
+      </div>
+      <div class="content">
+        <h1>Hey I'm <span>Narges Naghavi</span></h1>
+        <div class="typewriter">I'm a <span class="typewriter-text">Developer</span><label for="">|</label></div>
+        <p>I’m a student interested in math-heavy computer science topics like quantum computing, AI, and cellular automata. I have experience in backend development and testing and am building an interactive Rule 110 simulator with Django and Nuxt.js. I’m also preparing for the IELTS to improve my technical English. Outside of academics, I train in boxing twice a week and plan to start my own company.
+
+        </p>
+        <div class="social-links">
+          <a href="#"><i class="fa-brands fa-github"></i></a>
+          <a href="#"><i class="fa-brands fa-telegram"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <div class="btn">
+          <button>
+            about me
+          </button>
+        </div>
+      </div>
+    </section>
+    <script src="js/script.js"></script>
   </body>
 </html>
