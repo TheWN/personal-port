@@ -10,8 +10,12 @@
 body {
   width: 100%;
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
   background-color: black;
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
 }
 
 nav {
@@ -242,6 +246,7 @@ section {
   .main-container {
     display: flex;
     flex-direction: column;
+    align-items: center; /*for img*/
   }
   .nav-container .links {
     display: none;
@@ -253,6 +258,12 @@ section {
 
   .main-container .content {
     width: 80%;
+
+    margin-top: 40px; /* فاصله از متن */
+  }
+
+  .social-links {
+    margin-top: 20px; /* فاصله از متن */
   }
   .social-links i {
     width: 2.5rem;
@@ -261,18 +272,27 @@ section {
   }
 
   .main-container .image {
-    z-index: -1;
-    width: 50%;
-    height: 60%;
+    z-index: 1;
+    width: 40%;
+    height: 40%;
+    margin-top: 30px;
+    align-items: center;
   }
 
-  /* image has sth wrong  */
+  .image img {
+    text-align: center;
+  }
+  /* image has sth wrong ???  */
 }
 
 @media (max-width: 440px) {
+  .main-container {
+    padding: 10px;
+    min-height: 100vh;
+  }
   .main-container .image {
     width: 50%;
-    height: 30%;
+    height: 40%;
   }
   .main-container .content {
     width: 80%;
