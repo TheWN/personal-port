@@ -9,6 +9,11 @@
 h2 {
   color: aliceblue;
 }
+
+p {
+  color: aliceblue;
+}
+
 body {
   width: 100%;
   height: 100vh;
@@ -134,15 +139,15 @@ section {
 }
 
 .main-container .image {
-  width: 500px;
-  height: 80vh;
+  width: 200px;
+  height: 30vh;
   border-radius: 100%;
   overflow: hidden;
   box-shadow: 0 0 50px aqua;
 }
 
 .main-container .image img {
-  width: 100;
+  width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
@@ -169,6 +174,7 @@ section {
   color: white;
   width: 40%;
   min-height: 100px;
+  margin-left: 100px; /*distance from left*/
 }
 
 .content h1 {
@@ -243,6 +249,29 @@ section {
 .cancel {
   display: block;
 }
+
+@media (min-width: 1024px) {
+  /*desktop*/
+  .main-container .image {
+    width: 200px;
+    height: 30vh;
+    position: absolute; /* برای اینکه آزاد بشه */
+    top: 200px; /* فاصله از بالا */
+    left: 150px; /* فاصله از راست */
+    border-radius: 100%; /* گوشه‌های بیضی */
+    overflow: hidden;
+    box-shadow: 0 0 30px aqua;
+  }
+
+  .main-container .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+}
+
 @media (max-width: 884px) {
   nav .logo {
     position: absolute;
@@ -280,8 +309,8 @@ section {
 
   .main-container .image {
     z-index: -1;
-    width: 40%;
-    height: 40%;
+    width: 30%;
+    height: 30%;
     margin-top: 30px;
     align-items: center;
   }
@@ -308,4 +337,164 @@ section {
   .main-container button {
     margin-top: 15px;
   }
+}
+/*section experience*/
+.sect {
+  color: rgb(182, 234, 218);
+  text-shadow: 0 0 10px rgb(182, 234, 218);
+  margin-top: 90px;
+  text-align: center;
+}
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 25px; /* فاصله بین کارت‌ها */
+}
+
+.projects-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.projects .projects-card {
+  color: white;
+  width: 40%;
+  min-height: 100px;
+}
+
+.project-title {
+  text-decoration: none;
+  color: rgb(91, 143, 185);
+  margin-bottom: 25px; /* فاصله بین کارت‌ها */
+
+  font-weight: 500;
+}
+
+.view-link {
+  display: block;
+  margin-left: auto;
+  width: fit-content;
+  padding: 8px 16px;
+  background-color: aqua;
+  color: rgb(0, 0, 0);
+  border: none;
+  outline: none;
+  font-size: 120%;
+  font-weight: 700;
+  border-radius: 5px;
+  transition: 0.2s linear;
+  text-decoration: none; /* چون لینک هست */
+  margin-bottom: 25px; /* فاصله بین کارت‌ها */
+}
+.view-link:hover {
+  scale: 1.1;
+  color: aqua;
+  border: 2px solid aqua;
+  background-color: transparent;
+  box-shadow: 0 0 40px aqua;
+}
+
+.projects-card p {
+  font-size: clamp(0.4rem, 0.2rem + 9vw, 1rem);
+  margin: 0px 0;
+}
+
+/*section education*/
+
+.uni-projects {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* 👈 کارت‌ها سمت چپ */
+  gap: 30px;
+  padding: 20px;
+}
+
+.uni-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  color: white;
+  box-shadow: 0 0 20px aqua;
+}
+
+.uni-card h3.uni-title {
+  font-weight: 500;
+  margin-bottom: 15px;
+  color: aliceblue;
+}
+
+.uni-card p {
+  font-size: clamp(0.8rem, 0.6rem + 1vw, 1rem);
+  margin: 5px 0;
+}
+
+/*section skill*/
+
+#skills {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px 0;
+}
+
+.skill-card {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+.skill-card .rating {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* background-color: aqua; */
+}
+
+.skill-card .rating .block {
+  /*3:40*/
+  position: absolute;
+  width: 2px;
+  height: 15px;
+  background: #ffffff;
+  left: 50%;
+  transform-origin: 50% 100px; /*قطر*/
+  /* transform: rotate(15deg); */
+  opacity: 0;
+  animation: animate 0.1s linear forwards;
+}
+
+@keyframes animate {
+  to {
+    opacity: 1;
+  }
+}
+
+.skill-card .rating .block:nth-child(-n + 91) {
+  background-color: rgb(255, 0, 0);
+  box-shadow: 0 0 15px red, 0 0 30px red;
+}
+.skill-card .rating h2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  font-size: 1.2em;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.5em;
+}
+
+.skill-card .rating h2 span {
+  font-size: 2.5em;
+  font-weight: 700;
+}
+
+.skill-card .rating h2 sup {
+  font-size: 1.5em;
+  font-weight: 300;
 }
