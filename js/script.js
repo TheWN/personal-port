@@ -38,30 +38,38 @@ function eraseText() {
 }
 window.onload = typeWriter;
 
-const rating = document.getElementsByClassName("rating")[0];
-const block = document.getElementsByClassName("block");
+const ratings = document.getElementsByClassName("rating");
 
-for (var i = 1; i < 100; i++) {
-  rating.innerHTML += "<div class='block'></div>";
-  block[i].style.transform = "rotate(" + 3.6 * i + "deg)";
-  block[i].style.animationDelay = `${i / 40}s`;
-}
+for (let r = 0; r < ratings.length; r++) {
+  const rating = ratings[r];
 
-//360 /100 = 3.6 deg
+  // ساخت 100 بلاک
+  rating.innerHTML += "<div class='block'></div>".repeat(99);
+  const blocks = rating.getElementsByClassName("block");
 
-const counter = document.querySelector(".counter");
-counter.innerText = 0;
+  // زاویه و animation
+  const counter = rating.querySelector(".counter");
+  const target = +counter.getAttribute("data-target");
+  counter.innerText = 0;
 
-const target = +counter.getAttribute("data-target");
+  for (let i = 0; i < blocks.length; i++) {
+    blocks[i].style.transform = "rotate(" + 3.6 * i + "deg)";
+    blocks[i].style.animationDelay = `${i / 40}s`;
 
-const NumberCounter = () => {
-  const value = +counter.innerText;
-  if (value < target) {
-    counter.innerText = Math.ceil(value + 1);
-    setTimeout(() => {
-      NumberCounter();
-    }, 25);
+    // فقط تا درصد target رنگی شود
+    if (i < target) {
+      blocks[i].style.backgroundColor = "red";
+      blocks[i].style.boxShadow = "0 0 15px red, 0 0 30px red";
+    }
   }
-};
 
-NumberCounter();
+  // شمارنده عددی
+  const NumberCounter = () => {
+    const value = +counter.innerText;
+    if (value < target) {
+      counter.innerText = value + 1;
+      setTimeout(NumberCounter, 25);
+    }
+  };
+  NumberCounter();
+}
