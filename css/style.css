@@ -1,48 +1,66 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins%3Awght%40100%3B200%3B300%3B400%3B500%3B600&display=swap%27%29%3B");
+/* ==============================
+   📦 FONT & BASE SETTINGS
+============================== */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
 
 * {
   padding: 0;
   margin: 0;
-  font-family: "poppins", sans-serif;
   box-sizing: border-box;
-}
-h2 {
-  color: aliceblue;
+  font-family: "Poppins", sans-serif;
 }
 
-p {
-  color: aliceblue;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   width: 100%;
-  height: 100vh;
-  overflow-x: hidden;
+  min-height: 100vh;
   background-color: black;
+  overflow-x: hidden;
 }
 
 body::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+  display: none;
 }
 
+h2,
+p {
+  color: aliceblue;
+}
+
+/* ==============================
+   🧭 MODERN NAVBAR
+============================== */
 nav {
   width: 100%;
   height: 10vh;
   position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(6px) brightness(40%);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
+/* Container */
 .nav-container {
-  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   height: 100%;
   display: flex;
-  justify-content: "space-around";
+  justify-content: space-between;
   align-items: center;
+  padding: 0 3rem;
+  transition: padding 0.3s ease;
 }
 
+/* Logo */
 .logo {
   color: rgb(91, 143, 185);
   font-size: 2rem;
   font-weight: bold;
+  transition: color 0.3s ease;
 }
 
 .logo span {
@@ -50,138 +68,193 @@ nav {
   text-shadow: 0 0 10px rgb(182, 234, 218);
 }
 
-.hamburg,
-.cancel {
-  cursor: pointer;
-  position: absolute;
-  right: 15px;
-  top: 10px;
-  color: rgb(255, 255, 255);
-  display: none;
-  font-size: clamp(2.5rem + 5vw, 3rem);
-}
-
+/* Links */
 .nav-container .links {
   display: flex;
+  gap: 2rem;
 }
 
 .nav-container .links a {
   position: relative;
   font-size: 1.2rem;
+  font-weight: 500;
   color: white;
-  margin: 0 20px;
   text-decoration: none;
-  font-weight: 550;
-  transition: 0.3s linear;
+  transition: color 0.3s ease;
 }
 
 .nav-container .links a::before {
-  position: absolute;
   content: "";
-  bottom: -3px;
+  position: absolute;
+  bottom: -4px;
   left: 0;
-  width: 0%;
+  width: 0;
   height: 3px;
   background-color: aqua;
-  transform: 0.2s linear;
-}
-
-.nav-container .links a:hover::before {
-  width: 100%;
+  transition: width 0.3s ease;
 }
 
 .nav-container .links a:hover {
   color: aqua;
 }
 
-.dropdown {
-  z-index: 100;
-  position: absolute;
-  top: 0;
-  transform: translateY(-500px);
+.nav-container .links a:hover::before {
   width: 100%;
-  height: auto;
+}
+
+/* Hamburger Menu (Mobile) */
+.hamburg {
+  display: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Dropdown */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-500px);
+  width: 80%;
   backdrop-filter: blur(4px) brightness(40%);
+  background-color: rgba(0, 0, 0, 0.9); /* رنگ تیره و مات */
   box-shadow: 0 0 20px black;
-  transition: 0.2s linear;
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 900;
+}
+
+.dropdown.open {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.dropdown .links {
+  flex-direction: column;
+  display: flex;
 }
 
 .dropdown .links a {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
   color: white;
   text-decoration: none;
-  justify-content: center;
-  padding: 15px 0;
-  align-items: center;
-  transition: 0.2s linear;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .dropdown .links a:hover {
   background-color: aqua;
+  color: black;
 }
 
-section {
+/* ==============================
+   RESPONSIVE
+============================== */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0 1.5rem;
+  }
+
+  .nav-container .links {
+    display: none;
+  }
+
+  .hamburg {
+    display: block;
+  }
+
+  .logo {
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .dropdown {
+    display: none !important;
+  }
+}
+
+/* ==============================
+   🏠 HOME SECTION
+============================== */
+#home2 {
+  margin: 0;
+  padding: 0;
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   display: flex;
-  display: flex; /* فلکس برای وسط‌چین کردن */
-  flex-direction: column; /* متن‌ها زیر هم */
-  justify-content: center; /* وسط عمودی */
-  align-items: center; /* وسط افقی */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .main-container {
-  width: 100%;
-  height: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  position: relative;
 }
 
+/* --- Profile Image --- */
 .main-container .image {
-  width: 200px;
-  height: 30vh;
-  border-radius: 100%;
-  overflow: hidden;
+  width: 250px;
+  object-fit: contain;
   box-shadow: 0 0 50px aqua;
+  transition: 0.3s;
 }
 
 .main-container .image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
 }
+
 .main-container .image:hover {
-  animation: animate 1.5s ease-in-out infinite;
+  animation: pulse 1.5s ease-in-out infinite;
 }
 
-@keyframes animate {
-  0% {
-    scale: 1;
-  }
-  50% {
-    scale: 1.05;
-  }
-
+@keyframes pulse {
+  0%,
   100% {
     scale: 1;
   }
+  50% {
+    scale: 1.01;
+  }
+}
+
+.img-mobile {
+  display: none;
 }
 
 .main-container .content {
   color: white;
   width: 40%;
-  min-height: 100px;
-  margin-left: 100px; /*distance from left*/
+  height: 570px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  padding: 0 35px;
+  background: linear-gradient(135deg, #000 70%, rgba(0, 255, 255, 0.2));
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
 }
 
 .content h1 {
   font-size: clamp(1rem, 1rem + 5vw, 1.8rem);
+  text-align: start;
 }
 
-.content h1 span {
+.content h1 span,
+.content .typewriter-text {
   color: aqua;
   text-shadow: 0 0 10px aqua;
 }
@@ -189,16 +262,23 @@ section {
 .content .typewriter {
   font-size: clamp(1rem, 1rem + 5vw, 2.5rem);
   font-weight: 600;
-}
-
-.content .typewriter-text {
-  color: aqua;
-  text-shadow: 0 0 10px aqua;
+  text-align: start;
 }
 
 .content p {
-  font-size: clamp(0.4rem, 0.2rem + 9vw, 1rem);
+  font-size: clamp(0.8rem, 0.2rem + 2vw, 1rem);
   margin: 10px 0;
+  margin-bottom: 50px;
+  text-align: justify; /* برای منظم شدن دو طرف متن */
+  text-justify: inter-word; /* فاصله بین کلمات رو تنظیم می‌کنه */
+  line-height: 1.7; /* فاصله خطوط برای خوانایی بهتر */
+  text-indent: 1.5em; /* تورفتگی ابتدای پاراگراف */
+  hyphens: auto; /* اگر متن انگلیسی طولانی بود، درست قطعش می‌کنه */
+}
+
+/* --- Social Links --- */
+.social-links {
+  margin-top: 20px;
 }
 
 .social-links i {
@@ -207,7 +287,6 @@ section {
   align-items: center;
   width: 3rem;
   height: 3rem;
-  background-color: transparent;
   border: 0.2rem solid aqua;
   border-radius: 50%;
   color: aqua;
@@ -218,283 +297,666 @@ section {
 
 .social-links i:hover {
   scale: 1.3;
-  color: rgb(0, 0, 0);
   background-color: aqua;
+  color: black;
   filter: drop-shadow(0 0 10px aqua);
 }
 
-.content button {
-  width: 50%;
-  height: 6vh;
-  margin: 30px;
-  background-color: aqua;
-  color: rgb(0, 0, 0);
-  border: none;
-  outline: none;
-  font-size: 120%;
-  font-weight: 700;
-  border-radius: 5px;
-  transition: 0.2s linear;
-}
-
-.content button:hover {
-  scale: 1.1;
-  color: aqua;
-  border: 2px solid aqua;
-  background-color: transparent;
-  font-weight: 700;
-  box-shadow: 0 0 40px aqua;
-}
-.hamburg,
-.cancel {
-  display: block;
-}
-
-@media (min-width: 1024px) {
-  /*desktop*/
-  .main-container .image {
-    width: 200px;
-    height: 30vh;
-    position: absolute; /* برای اینکه آزاد بشه */
-    top: 200px; /* فاصله از بالا */
-    left: 150px; /* فاصله از راست */
-    border-radius: 100%; /* گوشه‌های بیضی */
-    overflow: hidden;
-    box-shadow: 0 0 30px aqua;
-  }
-
-  .main-container .image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-  }
-}
-
-@media (max-width: 884px) {
-  nav .logo {
-    position: absolute;
-    top: 16px;
-    left: 15px;
-    font-size: 1.5rem;
-  }
-  .main-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /*for img*/
-  }
-  .nav-container .links {
-    display: none;
-  }
-  .hamburg,
-  .cancel {
-    display: block;
-  }
-
-  .main-container .content {
-    width: 80%;
-
-    margin-top: 40px; /* فاصله از متن */
-  }
-
-  .social-links {
-    margin-top: 20px; /* فاصله از متن */
-  }
-  .social-links i {
-    width: 2.5rem;
-    height: 2.5rem;
-    font-size: 1.5rem;
-  }
-
-  .main-container .image {
-    z-index: -1;
-    width: 30%;
-    height: 30%;
-    margin-top: 30px;
-    align-items: center;
-  }
-
-  .image img {
-    text-align: center;
-  }
-  /* image has sth wrong ???  */
-}
-
-@media (max-width: 440px) {
-  .main-container {
-    padding: 10px;
-    min-height: 100vh;
-  }
-  .main-container .image {
-    width: 50%;
-    height: 40%;
-  }
-  .main-container .content {
-    width: 80%;
-  }
-
-  .main-container button {
-    margin-top: 15px;
-  }
-}
-/*section experience*/
-.sect {
-  color: rgb(182, 234, 218);
-  text-shadow: 0 0 10px rgb(182, 234, 218);
-  margin-top: 90px;
-  text-align: center;
-}
-.projects {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 25px; /* فاصله بین کارت‌ها */
-}
-
-.projects-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-}
-
-.projects .projects-card {
-  color: white;
-  width: 40%;
-  min-height: 100px;
-}
-
-.project-title {
-  text-decoration: none;
-  color: rgb(91, 143, 185);
-  margin-bottom: 25px; /* فاصله بین کارت‌ها */
-
-  font-weight: 500;
-}
-
+/* --- Button --- */
+.content button,
 .view-link {
-  display: block;
-  margin-left: auto;
-  width: fit-content;
-  padding: 8px 16px;
+  display: inline-block;
+  padding: 10px 20px;
   background-color: aqua;
-  color: rgb(0, 0, 0);
+  color: black;
   border: none;
-  outline: none;
-  font-size: 120%;
-  font-weight: 700;
   border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: 700;
   transition: 0.2s linear;
-  text-decoration: none; /* چون لینک هست */
-  margin-bottom: 25px; /* فاصله بین کارت‌ها */
+  text-decoration: none;
+  margin-top: 30px;
 }
+
+.content button:hover,
 .view-link:hover {
   scale: 1.1;
   color: aqua;
+  background: transparent;
   border: 2px solid aqua;
-  background-color: transparent;
   box-shadow: 0 0 40px aqua;
 }
-
-.projects-card p {
-  font-size: clamp(0.4rem, 0.2rem + 9vw, 1rem);
-  margin: 0px 0;
-}
-
-/*section education*/
-
-.uni-projects {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* 👈 کارت‌ها سمت چپ */
-  gap: 30px;
-  padding: 20px;
-}
-
-.uni-card {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  color: white;
-  box-shadow: 0 0 20px aqua;
-}
-
-.uni-card h3.uni-title {
-  font-weight: 500;
-  margin-bottom: 15px;
-  color: aliceblue;
-}
-
-.uni-card p {
-  font-size: clamp(0.8rem, 0.6rem + 1vw, 1rem);
-  margin: 5px 0;
-}
-
-/*section skill*/
-
-#skills {
+.btn {
   display: flex;
   justify-content: center;
-  gap: 40px;
-  padding: 40px 0;
 }
 
-.skill-card {
-  position: relative;
-  width: 200px;
-  height: 200px;
-}
-.skill-card .rating {
-  position: relative;
-  width: 100%;
-  height: 100%; /* background-color: aqua; */
-}
+/* Mobile layout */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column; /* عکس بالا، متن پایین */
+    align-items: center;
+    padding: 0 50px;
+  }
+  #experience,
+  #education,
+  #skills {
+    scroll-margin-top: 40px;
+  }
 
-.skill-card .rating .block {
-  /* 3:40 */
-  position: absolute;
-  width: 2px;
-  height: 15px;
-  background: #ffffff;
-  left: 50%;
-  transform-origin: 50% 60px;
-  transform: rotate(15deg);
-  opacity: 0;
-  animation: animate 0.1s linear forwards;
-}
+  /* عکس مخصوص موبایل */
+  .img-mobile {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    aspect-ratio: 6 / 8; /* نسبت مستطیلی مانند استوری اینستاگرام */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 50px aqua;
+    transition: 0.3s;
+  }
 
-@keyframes animate {
-  to {
-    opacity: 1;
+  .img-mobile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* عکس دسکتاپ در موبایل پنهان می‌شود */
+  .main-container .image {
+    display: none;
+  }
+
+  /* باکس محتوا */
+  .main-container .content {
+    display: flex;
+    flex-direction: column; /* متن و دکمه‌ها زیر هم */
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #000 70%, rgba(0, 255, 255, 0.2));
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .content h1 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+  }
+
+  .content .typewriter {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+
+  .content p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: justify;
+    text-justify: inter-word;
+    margin-bottom: 20px;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+
+  .social-links i {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+  }
+
+  .content button {
+    font-size: 0.75rem;
+    padding: 10px 20px;
+    margin-top: 10px;
   }
 }
 
-.skill-card .rating .block:nth-child(-n + 41) {
-  /* chat gpt is not dumb you are */
-  background-color: aqua;
-  box-shadow: 0 0 15px aqua, 0 0 30px aqua;
-}
-.skill-card .rating h2 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #ffffff;
-  font-size: 1.2em;
-  font-weight: 500;
+/* ==============================
+   💼 EXPERIENCE SECTION
+============================== */
+
+/* ===== Section Title ===== */
+.sect h1 {
+  color: rgb(182, 234, 218);
+  text-shadow: 0 0 12px rgb(182, 234, 218);
   text-align: center;
-  line-height: 1.5em;
+  font-size: clamp(1.8rem, 2vw + 1rem, 2.8rem);
+  padding-top: 80px;
+  margin-bottom: 50px;
+  letter-spacing: 0.5px;
 }
 
-.skill-card .rating h2 span {
-  font-size: 1.5em;
+/* ===== Projects Container ===== */
+.projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 45px;
+  padding: 0 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== Project Card ===== */
+.project-card {
+  color: white;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 255, 255, 0.1)
+  );
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: clamp(20px, 3vw, 40px);
+  width: 100%;
+  max-width: 750px;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 35px rgba(0, 255, 255, 0.4);
+  border-color: rgba(0, 255, 255, 0.4);
+}
+
+/* ===== Project Title ===== */
+.project-title {
+  color: rgb(91, 143, 185);
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: clamp(1.3rem, 1vw + 1rem, 1.8rem);
+}
+
+/* ===== Project Description ===== */
+.project-card p {
+  font-size: clamp(0.9rem, 0.6vw + 0.8rem, 1.05rem);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  text-align: justify;
+  color: rgb(220, 235, 240);
+}
+
+/* ===== View Button ===== */
+.view-div {
+  display: flex;
+  justify-content: center;
+}
+
+.view-link {
+  display: inline-block;
+  padding: clamp(8px, 1vw, 12px) clamp(20px, 2vw, 28px);
+  background-color: aqua;
+  color: black;
   font-weight: 700;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: clamp(0.9rem, 0.8vw + 0.8rem, 1rem);
+  transition: 0.3s ease;
 }
 
-.skill-card .rating h2 sup {
-  font-size: 1.5em;
-  font-weight: 300;
+.view-link:hover {
+  background: transparent;
+  border: 2px solid aqua;
+  color: aqua;
+  box-shadow: 0 0 25px aqua;
+  transform: scale(1.05);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .projects {
+    gap: 40px;
+  }
+  .sect h1 {
+    padding-top: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sect h1 {
+    font-size: 1.8rem;
+  }
+
+  .project-card {
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  .project-title {
+    font-size: 1.2rem;
+  }
+
+  .view-link {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sect h1 {
+    font-size: 1.5rem;
+  }
+
+  .project-card {
+    padding: 18px;
+    border-radius: 12px;
+  }
+
+  .project-title {
+    font-size: 1.1rem;
+  }
+
+  .project-card p {
+    font-size: 0.9rem;
+  }
+
+  .view-link {
+    font-size: 0.85rem;
+    padding: 8px 18px;
+  }
+}
+
+/* ==============================
+   🎓 EDUCATION SECTION
+============================== */
+/* ===== Section Header ===== */
+.sect {
+  text-align: center;
+  color: rgb(182, 234, 218);
+  text-shadow: 0 0 12px rgb(182, 234, 218);
+  font-size: clamp(1.8rem, 2vw + 1rem, 2.6rem);
+  margin: 80px 0 40px;
+  letter-spacing: 0.5px;
+}
+
+/* ===== Education Container ===== */
+.uni-projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 0 5%;
+  max-width: 1200px;
+  margin: 0 auto 80px;
+}
+
+/* ===== Education Card ===== */
+.uni-card {
+  width: 100%;
+  max-width: 750px;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 255, 255, 0.1)
+  );
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  border-radius: 16px;
+  padding: clamp(20px, 3vw, 40px);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.uni-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 35px rgba(0, 255, 255, 0.4);
+  border-color: rgba(0, 255, 255, 0.4);
+}
+
+/* ===== Title ===== */
+.uni-title {
+  color: rgb(91, 143, 185);
+  font-weight: 600;
+  font-size: clamp(1.3rem, 1vw + 1rem, 1.8rem);
+  margin-bottom: 10px;
+}
+
+/* ===== School & GPA ===== */
+.uni-school,
+.uni-gpa {
+  color: white;
+  font-size: clamp(0.9rem, 0.6vw + 0.8rem, 1rem);
+  margin-bottom: 6px;
+  opacity: 0.9;
+}
+
+/* ===== Description ===== */
+.uni-desc {
+  color: rgb(220, 235, 240);
+  font-size: clamp(0.9rem, 0.7vw + 0.8rem, 1rem);
+  line-height: 1.7;
+  text-align: justify;
+  margin-top: 8px;
+}
+
+/* ===== Tablet ===== */
+@media (max-width: 1024px) {
+  .sect {
+    font-size: 2rem;
+    margin: 70px 0 35px;
+  }
+  .uni-projects {
+    gap: 35px;
+  }
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 768px) {
+  .sect {
+    font-size: 1.8rem;
+    margin: 60px 0 30px;
+  }
+
+  .uni-card {
+    max-width: 90%;
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .uni-title {
+    font-size: 1.2rem;
+  }
+
+  .uni-school,
+  .uni-gpa {
+    font-size: 0.95rem;
+  }
+
+  .uni-desc {
+    font-size: 0.9rem;
+  }
+}
+
+/* ===== Small Mobile ===== */
+@media (max-width: 480px) {
+  .sect {
+    font-size: 1.5rem;
+    margin: 50px 0 25px;
+  }
+
+  .uni-card {
+    padding: 18px;
+    max-width: 95%;
+  }
+
+  .uni-title {
+    font-size: 1.1rem;
+  }
+
+  .uni-school,
+  .uni-gpa {
+    font-size: 0.9rem;
+  }
+
+  .uni-desc {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+}
+
+/* ==============================
+   🧠 SKILLS SECTION
+============================== */
+/* Base */
+.sect2 {
+  color: rgb(182, 234, 218);
+  text-shadow: 0 0 12px rgb(182, 234, 218);
+  text-align: center;
+  margin-top: 90px;
+}
+
+#skills {
+  scroll-margin-top: 80px;
+}
+
+.sect2 h1 {
+  font-size: clamp(1.8rem, 2vw + 1rem, 3rem);
+  padding: 40px 0 10px 0;
+}
+
+/* Skills container layout */
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: clamp(15px, 3vw, 35px);
+  padding: clamp(20px, 5vw, 60px);
+  padding-top: clamp(10px, 2vw, 30px);
+  justify-items: center;
+  align-items: center;
+  max-width: 1200px; /* تا وسط نگهش داره تو دسکتاپ */
+  margin: 0 auto;
+}
+
+/* Each skill card */
+.skill-card {
+  position: relative;
+  width: clamp(140px, 15vw, 200px);
+  height: clamp(140px, 15vw, 200px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-8px) scale(1.05);
+}
+
+/* Circular progress */
+.progress-ring {
+  transform: rotate(-90deg);
+  width: 80%;
+  height: auto;
+}
+
+.progress-ring__circle {
+  stroke-dasharray: 377; /* ثابت می‌مونه چون شعاع مشخصه */
+  stroke-dashoffset: 377;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.2s ease;
+}
+
+/* Counter inside circle */
+.counter {
+  position: absolute;
+  font-size: clamp(1rem, 1.5vw, 1.8rem);
+  font-weight: 700;
+  color: white;
+}
+
+/* Skill title */
+.skill-card h2 {
+  margin-top: 12px;
+  color: rgb(91, 143, 185);
+  font-weight: 600;
+  font-size: clamp(0.9rem, 1vw, 1.1rem);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sect2 h1 {
+    font-size: 2rem;
+  }
+
+  .skills-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+
+  .skill-card {
+    width: 130px;
+    height: 130px;
+  }
+
+  .counter {
+    font-size: 1rem;
+  }
+
+  .skill-card h2 {
+    font-size: 0.85rem;
+  }
+  .progress-ring {
+    transform: rotate(-90deg);
+    width: 100%;
+    height: 100%;
+  }
+
+  .progress-ring circle {
+    r: 40; /* شعاع دایره */
+    cx: 50;
+    cy: 50;
+    stroke-width: 6;
+  }
+}
+
+/* ==============================
+   ☎️ CONTACT
+============================== */
+
+#contact {
+  width: 100%;
+  margin-top: clamp(60px, 10vw, 200px);
+  padding: clamp(40px, 5vw, 80px) 20px;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.9) 70%,
+    rgba(0, 255, 255, 0.1) 30%
+  );
+}
+
+.contact-container {
+  max-width: clamp(320px, 90%, 600px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: clamp(10px, 2vw, 15px);
+  padding: clamp(20px, 4vw, 40px);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+  color: aqua;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.contact-container h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: rgb(182, 234, 218);
+  text-shadow: 0 0 12px rgb(182, 234, 218);
+  margin-bottom: clamp(20px, 3vw, 30px);
+}
+
+.contact-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(15px, 2vw, 20px);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: clamp(8px, 2vw, 12px) clamp(10px, 2vw, 15px);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: clamp(8px, 2vw, 10px);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: aqua;
+  box-shadow: 0 0 10px aqua;
+}
+
+.contact-form button {
+  padding: clamp(10px, 2vw, 12px) clamp(15px, 3vw, 20px);
+  border: none;
+  border-radius: clamp(6px, 2vw, 8px);
+  background: aqua;
+  color: black;
+  font-weight: 700;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.contact-form button:hover {
+  background: transparent;
+  border: 2px solid aqua;
+  color: aqua;
+  box-shadow: 0 0 20px aqua, 0 0 40px rgba(0, 255, 255, 0.3);
+}
+
+.social-links {
+  margin-top: clamp(15px, 3vw, 25px);
+  display: flex;
+  justify-content: center;
+  gap: clamp(15px, 2vw, 20px);
+}
+
+.social-links i {
+  font-size: clamp(1.5rem, 4vw, 1.8rem);
+  border: 2px solid aqua;
+  border-radius: 50%;
+  padding: clamp(8px, 2vw, 10px);
+  color: aqua;
+  transition: 0.3s ease;
+}
+
+.social-links i:hover {
+  background: aqua;
+  color: black;
+  transform: scale(1.2);
+  box-shadow: 0 0 20px aqua, 0 0 40px rgba(0, 255, 255, 0.5);
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 480px) {
+  .contact-container {
+    padding: 20px 15px;
+  }
+  .contact-container h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 0.75rem;
+    padding: 8px 10px;
+  }
+  .contact-form button {
+    font-size: 0.8rem;
+    padding: 10px 12px;
+  }
+  .social-links i {
+    font-size: 1.4rem;
+    padding: 7px;
+  }
 }
